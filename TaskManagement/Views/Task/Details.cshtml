@@ -1,0 +1,123 @@
+﻿@model TaskManagement.Model.Task
+
+@{
+    ViewBag.Title = "Детали задания";
+}
+
+<h2>Детали задания</h2>
+
+<div>
+    <h4>Задание</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Наименование
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            Описание
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Начало
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            Конец
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            Дата создания
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            Дата редактирование
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+
+        <dt>
+            Создатель
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            Исполнитель
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser1.Email)
+        </dd>
+
+        <dt>
+            Проект
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Name)
+        </dd>
+
+        <dt>
+            Статус
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskStatus.Name)
+        </dd>
+        <dt>
+            Операции
+        </dt>
+
+        <dd>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div>
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <label class="radio-inline">
+                            <input type="radio" name="StatusId" value="1" @(Model.StatusId==1?"checked":"") /> Нужно сделать
+                        </label>
+
+                        <label class="radio-inline">
+                            <input type="radio" name="StatusId" value="2" @(Model.StatusId==2?"checked":"") /> В работе
+                        </label>
+
+                        <label class="radio-inline">
+                            <input type="radio" name="StatusId" value="3" @(Model.StatusId==3?"checked":"") /> Сделано
+                        </label>
+                        <input type="submit" value="Сохранить" />
+                    </div>
+                </div>
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
